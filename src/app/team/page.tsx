@@ -67,9 +67,7 @@ export default function TeamPage() {
                         <div className="relative h-20 w-20">
                             <Image src="/assets/Logo_ITB.png" alt="ITB" fill className="object-contain" />
                         </div>
-                        <div className="relative h-20 w-28 rounded-md overflow-hidden">
-                            <Image src="/assets/Logo_FTTM.jpg" alt="FTTM ITB" fill className="object-cover" />
-                        </div>
+                        <Image src="/assets/Logo_FTTM.jpg" alt="FTTM ITB" width={112} height={80} className="h-20 w-auto" />
                     </div>
                 </div>
 

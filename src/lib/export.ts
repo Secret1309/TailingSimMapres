@@ -3,9 +3,9 @@ import Papa from 'papaparse';
 import { MassBalanceResult } from './simulation/massBalance';
 import { EconomicResult } from './simulation/economics';
 
-export const downloadCSV = (data: any[], filename: string) => {
-    const csv = Papa.unparse(data);
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+const downloadFile = (content: string, filename: string, mimeType: string) => {
+    const BOM = '\uFEFF';
+    const blob = new Blob([BOM + content], { type: mimeType });
     const url = URL.createObjectURL(blob);
 
     const link = document.createElement('a');
@@ -18,105 +18,77 @@ export const downloadCSV = (data: any[], filename: string) => {
 };
 
 export const exportSimulationData = (result: MassBalanceResult) => {
-    const formatted = [
-        {
-            Parameter: 'Daily Tailing Input',
-            Value: result.dailyTailingInput.toFixed(2),
-            Unit: 'ton/day',
-        },
-        {
-            Parameter: 'Daily Binder Input',
-            Value: result.dailyBinderInput.toFixed(2),
-            Unit: 'ton/day',
-        },
-        {
-            Parameter: 'Daily Total Input',
-            Value: result.dailyTotalInput.toFixed(2),
-            Unit: 'ton/day',
-        },
-        {
-            Parameter: 'Daily Product Output',
-            Value: result.dailyProductOutput.toFixed(2),
-            Unit: 'ton/day',
-        },
-        {
-            Parameter: 'Daily Loss',
-            Value: result.dailyLoss.toFixed(2),
-            Unit: 'ton/day',
-        },
-        {
-            Parameter: 'Product Yield',
-            Value: result.productYield.toFixed(2),
-            Unit: '%',
-        },
-        {
-            Parameter: 'Annual Tailing Input',
-            Value: result.annualTailingInput.toFixed(2),
-            Unit: 'ton/year',
-        },
-        {
-            Parameter: 'Annual Binder Input',
-            Value: result.annualBinderInput.toFixed(2),
-            Unit: 'ton/year',
-        },
-        {
-            Parameter: 'Annual Product Output',
-            Value: result.annualProductOutput.toFixed(2),
-            Unit: 'ton/year',
-        },
-        {
-            Parameter: 'Product Quality Grade',
-            Value: result.qualityGrade,
-            Unit: '-',
-        },
-        {
-            Parameter: 'Product Name',
-            Value: result.productName,
-            Unit: '-',
-        },
-        {
-            Parameter: 'Compressive Strength',
-            Value: result.compressiveStrength.toFixed(1),
-            Unit: 'MPa',
-        },
-        {
-            Parameter: 'Daily Energy Consumption',
-            Value: result.dailyEnergyKWh.toFixed(2),
-            Unit: 'kWh/day',
-        },
-        {
-            Parameter: 'Annual Energy Consumption',
-            Value: result.annualEnergyKWh.toFixed(2),
-            Unit: 'kWh/year',
-        },
+    const rows = [
+        ['Parameter', 'Nilai', 'Satuan'],
+        ['Input Tailing Harian', result.dailyTailingInput.toFixed(2), 'ton/hari'],
+        ['Input Binder Harian', result.dailyBinderInput.toFixed(2), 'ton/hari'],
+        ['Total Input Harian', result.dailyTotalInput.toFixed(2), 'ton/hari'],
+        ['Output Produk Harian', result.dailyProductOutput.toFixed(2), 'ton/hari'],
+        ['Kehilangan Harian', result.dailyLoss.toFixed(2), 'ton/hari'],
+        ['Product Yield', result.productYield.toFixed(2), '%'],
+        ['', '', ''],
+        ['Input Tailing Tahunan', result.annualTailingInput.toFixed(2), 'ton/tahun'],
+        ['Input Binder Tahunan', result.annualBinderInput.toFixed(2), 'ton/tahun'],
+        ['Output Produk Tahunan', result.annualProductOutput.toFixed(2), 'ton/tahun'],
+        ['', '', ''],
+        ['Kualitas Produk', result.qualityGrade, '-'],
+        ['Nama Produk', result.productName, '-'],
+        ['Kuat Tekan', result.compressiveStrength.toFixed(1), 'MPa'],
+        ['', '', ''],
+        ['Konsumsi Energi Harian', result.dailyEnergyKWh.toFixed(2), 'kWh/hari'],
+        ['Konsumsi Energi Tahunan', result.annualEnergyKWh.toFixed(2), 'kWh/tahun'],
     ];
-    downloadCSV(formatted, `TAILINGSIM_Mass_Balance_${new Date().toISOString().slice(0, 10)}.csv`);
+
+    // Use tab-separated values so Excel auto-formats into columns
+    const tsv = rows.map(row => row.join('\t')).join('\n');
+    downloadFile(tsv, `TAILINGSIM_Neraca_Massa_${new Date().toISOString().slice(0, 10)}.xls`, 'application/vnd.ms-excel');
 };
 
 export const exportEconomicReport = (econ: EconomicResult) => {
-    const metrics = [
-        { Metric: 'CAPEX Total', Value: econ.capexTotal, Unit: 'IDR' },
-        { Metric: 'CAPEX - Mixer', Value: econ.capexBreakdown.mixer, Unit: 'IDR' },
-        { Metric: 'CAPEX - Molder', Value: econ.capexBreakdown.molder, Unit: 'IDR' },
-        { Metric: 'CAPEX - Curing Chamber', Value: econ.capexBreakdown.curingChamber, Unit: 'IDR' },
-        { Metric: 'CAPEX - Silo & Conveyor', Value: econ.capexBreakdown.siloConveyor, Unit: 'IDR' },
-        { Metric: 'CAPEX - Installation', Value: econ.capexBreakdown.installation, Unit: 'IDR' },
-        { Metric: 'Annual OPEX', Value: econ.annualOpex, Unit: 'IDR' },
-        { Metric: 'OPEX - Binder Cost', Value: econ.opexBreakdown.binderCost, Unit: 'IDR' },
-        { Metric: 'OPEX - Energy Cost', Value: econ.opexBreakdown.energyCost, Unit: 'IDR' },
-        { Metric: 'OPEX - Labor Cost', Value: econ.opexBreakdown.laborCost, Unit: 'IDR' },
-        { Metric: 'OPEX - Maintenance', Value: econ.opexBreakdown.maintenance, Unit: 'IDR' },
-        { Metric: 'Annual Revenue', Value: econ.annualRevenue, Unit: 'IDR' },
-        { Metric: 'Revenue - Product Sales', Value: econ.revenueBreakdown.productSales, Unit: 'IDR' },
-        { Metric: 'Revenue - Tipping Fee', Value: econ.revenueBreakdown.tippingFee, Unit: 'IDR' },
-        { Metric: 'Gross Profit', Value: econ.grossProfit, Unit: 'IDR' },
-        { Metric: 'Net Profit', Value: econ.netProfit, Unit: 'IDR' },
-        { Metric: 'NPV (10 Years)', Value: econ.metrics.npv, Unit: 'IDR' },
-        { Metric: 'IRR', Value: econ.metrics.irr, Unit: '%' },
-        { Metric: 'Payback Period', Value: econ.metrics.paybackPeriod, Unit: 'Years' },
-        { Metric: 'Product Price', Value: econ.productPricePerTon, Unit: 'IDR/ton' },
-        { Metric: 'Cost per Ton Product', Value: econ.costPerTonProduct, Unit: 'IDR/ton' },
+    const formatNum = (n: number) => Math.round(n).toLocaleString('id-ID');
+
+    const rows = [
+        ['TAILINGSIM - Laporan Ekonomi', '', ''],
+        ['Tanggal', new Date().toLocaleDateString('id-ID'), ''],
+        ['', '', ''],
+        ['=== CAPEX (Investasi Awal) ===', '', ''],
+        ['Komponen', 'Nilai (Rp)', 'Satuan'],
+        ['Geopolymer Mixer', formatNum(econ.capexBreakdown.mixer), 'IDR'],
+        ['Hydraulic Molder', formatNum(econ.capexBreakdown.molder), 'IDR'],
+        ['Curing Chamber', formatNum(econ.capexBreakdown.curingChamber), 'IDR'],
+        ['Silo & Conveyor', formatNum(econ.capexBreakdown.siloConveyor), 'IDR'],
+        ['Instalasi', formatNum(econ.capexBreakdown.installation), 'IDR'],
+        ['CAPEX TOTAL', formatNum(econ.capexTotal), 'IDR'],
+        ['', '', ''],
+        ['=== OPEX (Biaya Operasional/Tahun) ===', '', ''],
+        ['Komponen', 'Nilai (Rp)', 'Satuan'],
+        ['Biaya Binder', formatNum(econ.opexBreakdown.binderCost), 'IDR/tahun'],
+        ['Biaya Energi', formatNum(econ.opexBreakdown.energyCost), 'IDR/tahun'],
+        ['Tenaga Kerja', formatNum(econ.opexBreakdown.laborCost), 'IDR/tahun'],
+        ['Pemeliharaan', formatNum(econ.opexBreakdown.maintenance), 'IDR/tahun'],
+        ['OPEX TOTAL', formatNum(econ.annualOpex), 'IDR/tahun'],
+        ['', '', ''],
+        ['=== REVENUE (Pendapatan/Tahun) ===', '', ''],
+        ['Komponen', 'Nilai (Rp)', 'Satuan'],
+        ['Penjualan Produk', formatNum(econ.revenueBreakdown.productSales), 'IDR/tahun'],
+        ['Tipping Fee', formatNum(econ.revenueBreakdown.tippingFee), 'IDR/tahun'],
+        ['REVENUE TOTAL', formatNum(econ.annualRevenue), 'IDR/tahun'],
+        ['', '', ''],
+        ['=== PROFITABILITAS ===', '', ''],
+        ['Metrik', 'Nilai', 'Satuan'],
+        ['Laba Kotor', formatNum(econ.grossProfit), 'IDR/tahun'],
+        ['Laba Bersih', formatNum(econ.netProfit), 'IDR/tahun'],
+        ['NPV (10 Tahun)', formatNum(econ.metrics.npv), 'IDR'],
+        ['IRR', econ.metrics.irr.toFixed(1), '%'],
+        ['Payback Period', econ.metrics.paybackPeriod.toFixed(1), 'Tahun'],
+        ['', '', ''],
+        ['=== UNIT ECONOMICS ===', '', ''],
+        ['Metrik', 'Nilai', 'Satuan'],
+        ['Harga Jual Produk', formatNum(econ.productPricePerTon), 'IDR/ton'],
+        ['Biaya Produksi', formatNum(Math.round(econ.costPerTonProduct)), 'IDR/ton'],
+        ['Margin per Ton', formatNum(Math.round(econ.productPricePerTon - econ.costPerTonProduct)), 'IDR/ton'],
     ];
 
-    downloadCSV(metrics, `TAILINGSIM_Economic_Report_${new Date().toISOString().slice(0, 10)}.csv`);
+    const tsv = rows.map(row => row.join('\t')).join('\n');
+    downloadFile(tsv, `TAILINGSIM_Laporan_Ekonomi_${new Date().toISOString().slice(0, 10)}.xls`, 'application/vnd.ms-excel');
 };

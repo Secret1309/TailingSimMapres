@@ -173,13 +173,13 @@ export function Dashboard() {
                             {massBalanceResult && (
                                 <div className="col-span-1 rounded-xl border bg-white p-6 shadow-sm lg:col-span-2">
                                     <h3 className="mb-4 font-semibold text-gray-800">Analisis Sensitivitas: Binder Ratio vs Output & Biaya</h3>
-                                    <div className="h-[300px] w-full">
+                                    <div className="h-[350px] w-full">
                                         <ResponsiveContainer width="100%" height="100%">
-                                            <LineChart data={massBalanceResult.sensitivityData}>
+                                            <LineChart data={massBalanceResult.sensitivityData} margin={{ top: 5, right: 40, left: 25, bottom: 25 }}>
                                                 <CartesianGrid strokeDasharray="3 3" />
-                                                <XAxis dataKey="binderRatio" label={{ value: 'Binder Ratio (%)', position: 'insideBottom', offset: -5 }} />
-                                                <YAxis yAxisId="left" label={{ value: 'Output (ton/tahun)', angle: -90, position: 'insideLeft' }} />
-                                                <YAxis yAxisId="right" orientation="right" label={{ value: 'Biaya Binder (Miliar)', angle: 90, position: 'insideRight' }} />
+                                                <XAxis dataKey="binderRatio" label={{ value: 'Binder Ratio (%)', position: 'insideBottom', offset: -10 }} />
+                                                <YAxis yAxisId="left" width={70} label={{ value: 'Output (ton/th)', angle: -90, position: 'insideLeft', offset: 5 }} />
+                                                <YAxis yAxisId="right" orientation="right" width={70} label={{ value: 'Biaya (Miliar)', angle: 90, position: 'insideRight', offset: 5 }} />
                                                 <Tooltip />
                                                 <Legend verticalAlign="top" />
                                                 <Line yAxisId="left" type="monotone" dataKey="productOutput" stroke="#374151" name="Output Produk" strokeWidth={3} />

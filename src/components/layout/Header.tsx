@@ -22,14 +22,13 @@ export function Header() {
                             className="object-contain p-1"
                         />
                     </div>
-                    <div className="relative h-[35px] w-[45px] overflow-hidden border-2 border-slate-200 shadow-sm lg:h-[55px] lg:w-[70px] rounded-md">
-                        <Image
-                            src="/assets/Logo_FTTM.jpg"
-                            alt="Logo FTTM ITB"
-                            fill
-                            className="object-cover"
-                        />
-                    </div>
+                    <Image
+                        src="/assets/Logo_FTTM.jpg"
+                        alt="Logo FTTM ITB"
+                        width={70}
+                        height={55}
+                        className="h-[35px] w-auto lg:h-[55px]"
+                    />
                 </div>
 
                 {/* Center Title - Absolutely Centered */}

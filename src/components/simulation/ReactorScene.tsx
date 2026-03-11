@@ -85,7 +85,7 @@ function TailingSilo() {
                 <meshStandardMaterial color="#64748b" metalness={0.6} />
             </mesh>
 
-            <DataLabel position={[-5, 5.4, 0]} title="TAILING SILO" data={[`Kapasitas: ${mass} ton/hari`]} />
+            <DataLabel position={[-5, 6.5, 0]} title="TAILING SILO" data={[`Kapasitas: ${mass} ton/hari`]} />
         </group>
     );
 }
@@ -112,7 +112,7 @@ function MixerMolder() {
             </mesh>
 
             <DataLabel
-                position={[0, 4.0, 0]}
+                position={[0, 5.5, 0]}
                 title="MIXER & MOLDER"
                 data={[
                     `Binder Ratio: ${binderRatio}%`,
@@ -159,7 +159,7 @@ function CuringChamber() {
             </mesh>
 
             <DataLabel
-                position={[5.5, 3.0, 0]}
+                position={[5.5, 4.5, 0]}
                 title="CURING CHAMBER"
                 data={[
                     `Suhu: ${curingTemp}°C`,
@@ -187,18 +187,23 @@ function PlantModel() {
 
             {/* PIPING SYSTEM */}
 
-            {/* Pipe 1: Silo -> Mixer */}
+            {/* Pipe 1: Silo discharge -> Conveyor -> Mixer inlet */}
             <PipePath points={[
-                [-4.0, 0.5, 0],
-                [-2.5, 0.5, 0],
-                [-1.5, 1.0, 0],
+                [-5.0, -0.8, 0],
+                [-5.0, -1.2, 0],
+                [-4.5, -1.2, 0],
+                [-3.0, -1.2, 0],
+                [-1.5, -1.2, 0],
+                [-1.25, -0.5, 0],
+                [-1.25, 0.5, 0],
             ]} />
 
-            {/* Pipe 2: Mixer -> Curing */}
+            {/* Pipe 2: Mixer outlet -> Curing Chamber inlet */}
             <PipePath points={[
                 [1.25, 1.0, 0],
+                [1.8, 1.0, 0],
                 [2.5, 1.0, 0],
-                [3.5, 1.0, 0],
+                [3.2, 1.0, 0],
                 [4.0, 1.0, 0],
             ]} />
 

@@ -9,25 +9,26 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white py-20 lg:py-32">
+      <section className="relative overflow-hidden bg-white py-20 lg:py-28">
         <div className="absolute inset-0 bg-[radial-gradient(#d1d5db_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
 
         <div className="container relative mx-auto px-4 text-center">
-          <div className="mx-auto max-w-4xl space-y-8">
+          <div className="mx-auto max-w-4xl space-y-6">
             <span className="inline-block rounded-full bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-700">
               MAPRES ITB 2026
             </span>
 
-            <h1 className="text-5xl font-bold tracking-tight text-gray-900 md:text-7xl">
-              <span className="bg-gradient-to-r from-gray-800 via-gray-600 to-gray-400 bg-clip-text text-transparent">TAILINGSIM</span>
-            </h1>
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 md:text-4xl lg:text-5xl leading-tight">
+              Platform Simulasi Web untuk Optimalisasi Tekno-Ekonomi Pengolahan Tailing
+            </h2>
 
-            <p className="mx-auto max-w-3xl text-xl text-gray-600">
-              Platform simulasi web untuk optimalisasi tekno-ekonomi pengolahan <strong>tailing pertambangan</strong> menjadi <strong>produk konstruksi</strong> (geopolimer/batako) berbasis ekonomi sirkular.
-              Decision Support System untuk menghitung neraca massa metalurgi dan kelayakan finansial (NPV, IRR, Payback Period) dari upcycling limbah tailing.
+            <p className="mx-auto max-w-3xl text-lg text-gray-600 leading-relaxed">
+              Decision Support System untuk menghitung neraca massa metalurgi dan kelayakan finansial
+              (NPV, IRR, Payback Period) dari upcycling limbah <strong>tailing pertambangan</strong> menjadi
+              <strong> produk konstruksi</strong> (geopolimer/batako) berbasis ekonomi sirkular.
             </p>
 
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="flex flex-col items-center justify-center gap-3 pt-4 sm:flex-row sm:gap-4">
               <Link
                 href="/simulation"
                 className="group flex w-full items-center justify-center gap-2 rounded-full bg-gray-800 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-gray-700 hover:shadow-gray-300 sm:w-auto"
@@ -36,19 +37,19 @@ export default function Home() {
               </Link>
               <Link
                 href="/about"
-                className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-8 py-4 text-lg font-semibold text-gray-700 transition-all hover:bg-gray-50 sm:w-auto"
+                className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-700 transition-all hover:bg-gray-50 sm:w-auto"
               >
                 Metodologi
               </Link>
               <Link
                 href="/documentation"
-                className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-8 py-4 text-lg font-semibold text-gray-700 transition-all hover:bg-gray-50 sm:w-auto"
+                className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-700 transition-all hover:bg-gray-50 sm:w-auto"
               >
                 Dokumentasi
               </Link>
               <Link
                 href="/team"
-                className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-8 py-4 text-lg font-semibold text-gray-700 transition-all hover:bg-gray-50 sm:w-auto"
+                className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-700 transition-all hover:bg-gray-50 sm:w-auto"
               >
                 Tim Pengembang
               </Link>

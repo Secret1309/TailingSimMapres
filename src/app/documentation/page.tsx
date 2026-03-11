@@ -251,7 +251,7 @@ export default function Documentation() {
 
                             <div className="rounded-lg bg-gray-50 p-4 text-sm text-gray-700 border border-gray-200">
                                 <strong>Catatan:</strong> Limbah tailing diasumsikan gratis (Rp 0/ton) karena merupakan limbah industri tambang.
-                                Bahkan, pabrik dapat menerima <strong>Tipping Fee</strong> sebesar Rp 50.000/ton untuk menerima tailing — menjadikan bahan baku justru menghasilkan pendapatan.
+                                Bahkan, pabrik dapat menerima <strong>Tipping Fee</strong> sebesar Rp 50.000/ton untuk menerima tailing, menjadikan bahan baku justru menghasilkan pendapatan.
                             </div>
                         </div>
                     </section>
