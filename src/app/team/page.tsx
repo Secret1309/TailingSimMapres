@@ -61,13 +61,13 @@ export default function TeamPage() {
                 </div>
 
                 {/* Logos - ITB & FTTM */}
-                <div className="mt-20 flex flex-col items-center justify-center space-y-6 opacity-60 grayscale transition-all hover:grayscale-0">
-                    <h3 className="text-sm font-semibold uppercase text-gray-400">Supported By</h3>
-                    <div className="flex items-center gap-12">
-                        <div className="relative h-20 w-20">
+                <div className="mt-20 flex flex-col items-center justify-center space-y-4 opacity-50 grayscale transition-all hover:grayscale-0">
+                    <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400">Supported By</h3>
+                    <div className="flex items-center gap-8">
+                        <div className="relative h-10 w-10">
                             <Image src="/assets/Logo_ITB.png" alt="ITB" fill className="object-contain" />
                         </div>
-                        <Image src="/assets/Logo_FTTM.jpg" alt="FTTM ITB" width={112} height={80} className="h-20 w-auto" />
+                        <Image src="/assets/Logo_FTTM.jpg" alt="FTTM ITB" width={60} height={40} className="h-10 w-auto" />
                     </div>
                 </div>
 
