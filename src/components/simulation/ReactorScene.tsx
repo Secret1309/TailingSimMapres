@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from "react";
+import React, { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Text, Html, useProgress, PerspectiveCamera, Environment, Sky } from "@react-three/drei";
 import * as THREE from "three";
@@ -35,15 +35,31 @@ function Loader() {
     );
 }
 
-function PipePath({ points, radius = 0.06, color = "#6b7280" }: { points: number[][], radius?: number, color?: string }) {
-    const curve = useMemo(() => {
-        const vectors = points.map(p => new THREE.Vector3(...p));
-        return new THREE.CatmullRomCurve3(vectors, false, 'catmullrom', 0.1);
-    }, [points]);
+// StraightPipe: A simple horizontal pipe using a cylinder.
+// CatmullRomCurve3 was causing endpoint gaps because of spline interpolation.
+// A rotated cylinder is mathematically exact — no gaps possible.
+function StraightPipe({ from, to, radius = 0.08, color = "#6b7280" }: {
+    from: [number, number, number],
+    to: [number, number, number],
+    radius?: number,
+    color?: string
+}) {
+    const dx = to[0] - from[0];
+    const dy = to[1] - from[1];
+    const dz = to[2] - from[2];
+    const length = Math.sqrt(dx * dx + dy * dy + dz * dz);
+    const midX = (from[0] + to[0]) / 2;
+    const midY = (from[1] + to[1]) / 2;
+    const midZ = (from[2] + to[2]) / 2;
+
+    // Calculate rotation to align cylinder (default Y-axis) with the pipe direction
+    const dir = new THREE.Vector3(dx, dy, dz).normalize();
+    const up = new THREE.Vector3(0, 1, 0);
+    const quat = new THREE.Quaternion().setFromUnitVectors(up, dir);
 
     return (
-        <mesh>
-            <tubeGeometry args={[curve, 64, radius, 8, false]} />
+        <mesh position={[midX, midY, midZ]} quaternion={quat}>
+            <cylinderGeometry args={[radius, radius, length, 12]} />
             <meshStandardMaterial color={color} metalness={0.7} roughness={0.3} />
         </mesh>
     );
@@ -107,23 +123,19 @@ function MixerMolder() {
             </mesh>
 
             {/* Binder Hopper - proper funnel sitting on the machine */}
-            {/* Hopper cylinder body (sits on top of machine) */}
             <mesh position={[0.8, 3.2, 0.5]}>
                 <cylinderGeometry args={[0.25, 0.35, 0.6, 16]} />
                 <meshStandardMaterial color="#78716c" metalness={0.6} roughness={0.3} />
             </mesh>
-            {/* Hopper rim (top ring) */}
             <mesh position={[0.8, 3.55, 0.5]}>
                 <cylinderGeometry args={[0.38, 0.38, 0.08, 16]} />
                 <meshStandardMaterial color="#6b7280" metalness={0.7} roughness={0.2} />
             </mesh>
-            {/* Hopper discharge pipe (goes into machine body) */}
             <mesh position={[0.8, 2.75, 0.5]}>
                 <cylinderGeometry args={[0.08, 0.15, 0.35, 8]} />
                 <meshStandardMaterial color="#57534e" metalness={0.6} />
             </mesh>
 
-            {/* Binder In label next to hopper */}
             <Html position={[1.5, 3.4, 0.5]} distanceFactor={10} center>
                 <div className="rounded bg-gray-600/80 px-1.5 py-0.5 text-[8px] font-bold text-white border border-gray-400/30 whitespace-nowrap">BINDER IN</div>
             </Html>
@@ -197,33 +209,19 @@ function PlantModel() {
             <MixerMolder />
             <CuringChamber />
 
-            {/* PIPING SYSTEM */}
-
-            {/* Pipe 1: Silo side outlet -> horizontal run -> Mixer left side */}
-            <PipePath points={[
-                [-4.0, 0.5, 0],
-                [-3.5, 0.5, 0],
-                [-2.5, 0.5, 0],
-                [-1.5, 0.5, 0],
-                [-1.25, 0.5, 0],
-            ]} radius={0.08} />
-
-            {/* Pipe 2: Mixer right side -> straight to Curing Chamber left side */}
-            <PipePath points={[
-                [1.25, 0.5, 0],
-                [2.0, 0.5, 0],
-                [3.0, 0.5, 0],
-                [3.5, 0.5, 0],
-                [4.0, 0.5, 0],
-            ]} radius={0.08} />
+            {/* PIPING SYSTEM — using StraightPipe (cylinder) for exact positioning */}
+            {/* Silo edge (x=-4.0) is at silo center(-5) + radius(1.0). Mixer left edge at x=-1.25. */}
+            <StraightPipe from={[-4.0, 0.5, 0]} to={[-1.25, 0.5, 0]} />
+            {/* Mixer right edge at x=1.25. Curing left edge at x=5.5-1.5=4.0. */}
+            <StraightPipe from={[1.25, 0.5, 0]} to={[4.0, 0.5, 0]} />
 
             {/* Conveyor Belt Visual (simple boxes) */}
-            <mesh position={[-2.5, 0.1, 0]}>
-                <boxGeometry args={[3.0, 0.1, 0.6]} />
+            <mesh position={[-2.625, 0.1, 0]}>
+                <boxGeometry args={[2.75, 0.1, 0.6]} />
                 <meshStandardMaterial color="#4b5563" metalness={0.5} />
             </mesh>
-            <mesh position={[3.0, 0.1, 0]}>
-                <boxGeometry args={[3.0, 0.1, 0.6]} />
+            <mesh position={[2.625, 0.1, 0]}>
+                <boxGeometry args={[2.75, 0.1, 0.6]} />
                 <meshStandardMaterial color="#4b5563" metalness={0.5} />
             </mesh>
 

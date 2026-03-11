@@ -12,9 +12,9 @@ export function Header() {
         <header className="sticky top-0 z-50 w-full border-b border-gray-300 bg-white/80 backdrop-blur-md">
             <div className="container relative mx-auto flex h-16 items-center justify-between px-2 lg:h-24 lg:px-4">
 
-                {/* Logos Section - Left */}
-                <div className="flex items-center gap-2 lg:gap-6">
-                    <div className="relative h-[35px] w-[35px] overflow-hidden rounded-full border-2 border-slate-200 shadow-sm lg:h-[55px] lg:w-[55px]">
+                {/* Logos Section - Left (hidden on mobile to prevent overlap) */}
+                <div className="hidden items-center gap-2 lg:flex lg:gap-6">
+                    <div className="relative h-[55px] w-[55px] overflow-hidden rounded-full border-2 border-slate-200 shadow-sm">
                         <Image
                             src="/assets/Logo_ITB.png"
                             alt="Logo ITB"
@@ -27,14 +27,14 @@ export function Header() {
                         alt="Logo FTTM ITB"
                         width={50}
                         height={35}
-                        className="h-[22px] w-auto lg:h-[32px]"
+                        className="h-[32px] w-auto"
                     />
                 </div>
 
-                {/* Center Title - Absolutely Centered */}
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-center">
+                {/* Center Title - Left on mobile, center on desktop */}
+                <div className="lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:transform text-left lg:text-center">
                     <Link href="/">
-                        <h1 className="bg-gradient-to-r from-gray-800 via-gray-500 to-gray-400 bg-clip-text text-3xl font-extrabold tracking-[0.15em] text-transparent drop-shadow-sm transition-all hover:opacity-90 lg:text-5xl lg:tracking-[0.2em]">
+                        <h1 className="bg-gradient-to-r from-gray-800 via-gray-500 to-gray-400 bg-clip-text text-xl font-extrabold tracking-[0.1em] text-transparent drop-shadow-sm transition-all hover:opacity-90 sm:text-2xl lg:text-5xl lg:tracking-[0.2em]">
                             TAILINGSIM
                         </h1>
                     </Link>
