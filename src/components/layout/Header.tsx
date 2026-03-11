@@ -25,9 +25,9 @@ export function Header() {
                     <Image
                         src="/assets/Logo_FTTM.jpg"
                         alt="Logo FTTM ITB"
-                        width={70}
-                        height={55}
-                        className="h-[35px] w-auto lg:h-[55px]"
+                        width={50}
+                        height={35}
+                        className="h-[22px] w-auto lg:h-[32px]"
                     />
                 </div>
 

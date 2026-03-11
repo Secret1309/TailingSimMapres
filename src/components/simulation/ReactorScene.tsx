@@ -105,11 +105,28 @@ function MixerMolder() {
                 <cylinderGeometry args={[0.4, 0.4, 1.2, 16]} />
                 <meshStandardMaterial color="#1f2937" metalness={0.8} />
             </mesh>
-            {/* Hopper/Funnel on top */}
-            <mesh position={[0, 3.0, 0.6]}>
-                <coneGeometry args={[0.5, 0.6, 4]} />
-                <meshStandardMaterial color="#6b7280" metalness={0.5} />
+
+            {/* Binder Hopper - proper funnel sitting on the machine */}
+            {/* Hopper cylinder body (sits on top of machine) */}
+            <mesh position={[0.8, 3.2, 0.5]}>
+                <cylinderGeometry args={[0.25, 0.35, 0.6, 16]} />
+                <meshStandardMaterial color="#78716c" metalness={0.6} roughness={0.3} />
             </mesh>
+            {/* Hopper rim (top ring) */}
+            <mesh position={[0.8, 3.55, 0.5]}>
+                <cylinderGeometry args={[0.38, 0.38, 0.08, 16]} />
+                <meshStandardMaterial color="#6b7280" metalness={0.7} roughness={0.2} />
+            </mesh>
+            {/* Hopper discharge pipe (goes into machine body) */}
+            <mesh position={[0.8, 2.75, 0.5]}>
+                <cylinderGeometry args={[0.08, 0.15, 0.35, 8]} />
+                <meshStandardMaterial color="#57534e" metalness={0.6} />
+            </mesh>
+
+            {/* Binder In label next to hopper */}
+            <Html position={[1.5, 3.4, 0.5]} distanceFactor={10} center>
+                <div className="rounded bg-gray-600/80 px-1.5 py-0.5 text-[8px] font-bold text-white border border-gray-400/30 whitespace-nowrap">BINDER IN</div>
+            </Html>
 
             <DataLabel
                 position={[0, 5.5, 0]}
@@ -120,11 +137,6 @@ function MixerMolder() {
                     "Hydraulic Press"
                 ]}
             />
-
-            {/* Output Labels */}
-            <Html position={[0, 2.8, 1.2]} distanceFactor={10} center>
-                <div className="rounded bg-gray-600/80 px-1 py-0.5 text-[8px] font-bold text-white border border-gray-400/30">BINDER IN</div>
-            </Html>
         </group>
     );
 }
@@ -187,25 +199,23 @@ function PlantModel() {
 
             {/* PIPING SYSTEM */}
 
-            {/* Pipe 1: Silo discharge -> Conveyor -> Mixer inlet */}
+            {/* Pipe 1: Silo side outlet -> horizontal run -> Mixer left side */}
             <PipePath points={[
-                [-5.0, -0.8, 0],
-                [-5.0, -1.2, 0],
-                [-4.5, -1.2, 0],
-                [-3.0, -1.2, 0],
-                [-1.5, -1.2, 0],
-                [-1.25, -0.5, 0],
+                [-4.0, 0.5, 0],
+                [-3.5, 0.5, 0],
+                [-2.5, 0.5, 0],
+                [-1.5, 0.5, 0],
                 [-1.25, 0.5, 0],
-            ]} />
+            ]} radius={0.08} />
 
-            {/* Pipe 2: Mixer outlet -> Curing Chamber inlet */}
+            {/* Pipe 2: Mixer right side -> straight to Curing Chamber left side */}
             <PipePath points={[
-                [1.25, 1.0, 0],
-                [1.8, 1.0, 0],
-                [2.5, 1.0, 0],
-                [3.2, 1.0, 0],
-                [4.0, 1.0, 0],
-            ]} />
+                [1.25, 0.5, 0],
+                [2.0, 0.5, 0],
+                [3.0, 0.5, 0],
+                [3.5, 0.5, 0],
+                [4.0, 0.5, 0],
+            ]} radius={0.08} />
 
             {/* Conveyor Belt Visual (simple boxes) */}
             <mesh position={[-2.5, 0.1, 0]}>
