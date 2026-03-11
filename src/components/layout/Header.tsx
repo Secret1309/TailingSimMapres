@@ -31,8 +31,8 @@ export function Header() {
                     />
                 </div>
 
-                {/* Center Title - Left on mobile, center on desktop */}
-                <div className="lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:transform text-left lg:text-center">
+                {/* Center Title - Centered on all screens */}
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-center">
                     <Link href="/">
                         <h1 className="bg-gradient-to-r from-gray-800 via-gray-500 to-gray-400 bg-clip-text text-xl font-extrabold tracking-[0.1em] text-transparent drop-shadow-sm transition-all hover:opacity-90 sm:text-2xl lg:text-5xl lg:tracking-[0.2em]">
                             TAILINGSIM
