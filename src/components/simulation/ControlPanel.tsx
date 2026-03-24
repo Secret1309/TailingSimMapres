@@ -58,18 +58,27 @@ export function ControlPanel() {
                     </div>
 
                     <div className="space-y-2">
-                        <div className="flex justify-between">
+                        <div className="flex items-center justify-between">
                             <label className="text-sm font-medium">Kapasitas Produksi</label>
-                            <span className="text-sm font-bold text-gray-700">{inputMass} ton/hari</span>
+                            <div className="flex items-center gap-2">
+                                <input
+                                    type="number"
+                                    min="1" max="5000"
+                                    value={inputMass}
+                                    onChange={(e) => setParams({ inputMass: Number(e.target.value) || 1 })}
+                                    className="w-20 rounded-md border border-gray-300 p-1 text-right text-sm font-bold text-gray-700 focus:border-gray-500 focus:outline-none"
+                                />
+                                <span className="text-sm font-bold text-gray-700">ton/hari</span>
+                            </div>
                         </div>
                         <input
-                            type="range" min="100" max="5000" step="100"
+                            type="range" min="1" max="5000" step="1"
                             value={inputMass}
                             onChange={(e) => setParams({ inputMass: Number(e.target.value) })}
                             className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 accent-gray-700"
                         />
                         <div className="flex justify-between text-xs text-gray-400">
-                            <span>100</span>
+                            <span>1</span>
                             <span>5000</span>
                         </div>
                     </div>
@@ -80,9 +89,18 @@ export function ControlPanel() {
                     <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-600">2. Parameter Proses</h3>
 
                     <div className="space-y-2">
-                        <div className="flex justify-between">
-                            <label className="text-sm font-medium">Binder Ratio (Rasio Pengikat)</label>
-                            <span className="text-sm font-bold text-gray-700">{binderRatio}%</span>
+                        <div className="flex items-center justify-between">
+                            <label className="text-sm font-medium">Binder Ratio (Pengikat)</label>
+                            <div className="flex items-center gap-2">
+                                <input
+                                    type="number"
+                                    min="5" max="30"
+                                    value={binderRatio}
+                                    onChange={(e) => setParams({ binderRatio: Number(e.target.value) || 5 })}
+                                    className="w-16 rounded-md border border-gray-300 p-1 text-right text-sm font-bold text-gray-700 focus:border-gray-500 focus:outline-none"
+                                />
+                                <span className="text-sm font-bold text-gray-700">%</span>
+                            </div>
                         </div>
                         <input
                             type="range" min="5" max="30" step="1"
@@ -97,19 +115,28 @@ export function ControlPanel() {
                     </div>
 
                     <div className="space-y-2">
-                        <div className="flex justify-between">
+                        <div className="flex items-center justify-between">
                             <label className="text-sm font-medium">Suhu Curing</label>
-                            <span className="text-sm font-bold text-gray-700">{curingTemp}°C</span>
+                            <div className="flex items-center gap-2">
+                                <input
+                                    type="number"
+                                    min="25" max="80"
+                                    value={curingTemp}
+                                    onChange={(e) => setParams({ curingTemp: Number(e.target.value) || 25 })}
+                                    className="w-16 rounded-md border border-gray-300 p-1 text-right text-sm font-bold text-gray-700 focus:border-gray-500 focus:outline-none"
+                                />
+                                <span className="text-sm font-bold text-gray-700">°C</span>
+                            </div>
                         </div>
                         <input
-                            type="range" min="25" max="80" step="5"
+                            type="range" min="25" max="80" step="1"
                             value={curingTemp}
                             onChange={(e) => setParams({ curingTemp: Number(e.target.value) })}
                             className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 accent-gray-700"
                         />
                         <div className="flex justify-between text-xs text-gray-400">
-                            <span>25°C (Ruang)</span>
-                            <span>80°C (Oven)</span>
+                            <span>25°C</span>
+                            <span>80°C</span>
                         </div>
                     </div>
                 </div>
