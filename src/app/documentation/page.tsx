@@ -348,11 +348,178 @@ export default function Documentation() {
                         </div>
                     </section>
 
-                    {/* 8. Daftar Pustaka */}
+                    {/* 8. Parameter KTI */}
                     <section className="rounded-2xl border bg-white p-8 shadow-sm">
                         <h2 className="mb-6 flex items-center gap-3 text-2xl font-bold text-gray-900">
                             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-sm text-gray-700">8</span>
-                            Daftar Pustaka (Material &amp; Geopolimerisasi)
+                            Parameter Kalkulator BUMDes (Sumber KTI)
+                        </h2>
+                        <div className="space-y-8">
+                            
+                            {/* Tabel 1 */}
+                            <div>
+                                <h3 className="mb-3 text-lg font-semibold text-gray-800">Tabel 1: Parameter Konversi Satuan Fisis (Material & Aktivator)</h3>
+                                <p className="text-sm text-gray-600 mb-3">Tabel ini digunakan oleh algoritma untuk menerjemahkan perhitungan berat (Kg) menjadi satuan volume praktis (Liter/Karung/Sak) yang dimengerti oleh operator BUMDes.</p>
+                                <div className="overflow-hidden rounded-lg border">
+                                    <table className="w-full text-sm text-left">
+                                        <thead className="bg-gray-50 border-b">
+                                            <tr>
+                                                <th className="px-4 py-3 font-semibold text-gray-700">Komponen Material</th>
+                                                <th className="px-4 py-3 font-semibold text-gray-700">Parameter Fisis</th>
+                                                <th className="px-4 py-3 font-semibold text-gray-700">Nilai Referensi</th>
+                                                <th className="px-4 py-3 font-semibold text-gray-700">Satuan Eksekusi Warga</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y">
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-gray-900">Tailing (Kering)</td>
+                                                <td className="px-4 py-3 text-gray-600">Bulk Density</td>
+                                                <td className="px-4 py-3 text-gray-600">1,4 - 1,6 kg/Liter</td>
+                                                <td className="px-4 py-3 text-gray-600">1 Karung Standar ≈ 50 kg</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-gray-900">Natrium Silikat Cair (Na₂SiO₃)</td>
+                                                <td className="px-4 py-3 text-gray-600">Specific Gravity</td>
+                                                <td className="px-4 py-3 text-gray-600">1,39 - 1,40 kg/Liter</td>
+                                                <td className="px-4 py-3 text-gray-600">Liter / Jerigen (20-30 L)</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-gray-900">Natrium Hidroksida (NaOH 8M)</td>
+                                                <td className="px-4 py-3 text-gray-600">Specific Gravity</td>
+                                                <td className="px-4 py-3 text-gray-600">1,30 - 1,35 kg/Liter</td>
+                                                <td className="px-4 py-3 text-gray-600">Liter / Jerigen (20-30 L)</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-gray-900">Semen Portland</td>
+                                                <td className="px-4 py-3 text-gray-600">Bulk Density</td>
+                                                <td className="px-4 py-3 text-gray-600">1,2 - 1,5 kg/Liter</td>
+                                                <td className="px-4 py-3 text-gray-600">1 Sak ≈ 50 kg</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            {/* Tabel 2 */}
+                            <div>
+                                <h3 className="mb-3 text-lg font-semibold text-gray-800">Tabel 2: Data Konversi Dimensi & Berat Produk Akhir (SNI)</h3>
+                                <div className="overflow-hidden rounded-lg border">
+                                    <table className="w-full text-sm text-left">
+                                        <thead className="bg-gray-50 border-b">
+                                            <tr>
+                                                <th className="px-4 py-3 font-semibold text-gray-700">Jenis Produk</th>
+                                                <th className="px-4 py-3 font-semibold text-gray-700">Standar Acuan Mutu</th>
+                                                <th className="px-4 py-3 font-semibold text-gray-700">Dimensi Standar</th>
+                                                <th className="px-4 py-3 font-semibold text-gray-700">Estimasi Berat per Satuan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y">
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-gray-900">Paving Block (Bata Beton)</td>
+                                                <td className="px-4 py-3 text-gray-600">SNI 03-0691-1996</td>
+                                                <td className="px-4 py-3 text-gray-600">21 x 10,5 x 6 cm</td>
+                                                <td className="px-4 py-3 text-gray-600">≈ 3,0 - 3,2 kg / buah</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-gray-900">Batako Berongga (Hollow Block)</td>
+                                                <td className="px-4 py-3 text-gray-600">SNI 03-0349-1989</td>
+                                                <td className="px-4 py-3 text-gray-600">40 x 20 x 10 cm</td>
+                                                <td className="px-4 py-3 text-gray-600">≈ 8,0 - 10,0 kg / buah</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            {/* Tabel 3 */}
+                            <div>
+                                <h3 className="mb-3 text-lg font-semibold text-gray-800">Tabel 3: Database Harga Eceran Komponen OPEX (Konteks Mimika)</h3>
+                                <div className="overflow-hidden rounded-lg border">
+                                    <table className="w-full text-sm text-left">
+                                        <thead className="bg-gray-50 border-b">
+                                            <tr>
+                                                <th className="px-4 py-3 font-semibold text-gray-700">Komponen</th>
+                                                <th className="px-4 py-3 font-semibold text-gray-700">Jenis Harga</th>
+                                                <th className="px-4 py-3 font-semibold text-gray-700">Estimasi Retail (Papua)</th>
+                                                <th className="px-4 py-3 font-semibold text-gray-700">Keterangan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y">
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-gray-900">Tailing ModADA</td>
+                                                <td className="px-4 py-3 text-gray-600">Harga Bahan Baku</td>
+                                                <td className="px-4 py-3 font-mono text-gray-900">Rp 0 (Gratis)</td>
+                                                <td className="px-4 py-3 text-gray-600">Disuplai CSR PTFI</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-gray-900">Natrium Silikat Cair</td>
+                                                <td className="px-4 py-3 text-gray-600">Harga Eceran Kimia</td>
+                                                <td className="px-4 py-3 font-mono text-gray-900">Rp 18.000 - 25.000 / Liter</td>
+                                                <td className="px-4 py-3 text-gray-600">Harga supplier Timika</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-gray-900">NaOH Flakes</td>
+                                                <td className="px-4 py-3 text-gray-600">Harga Eceran Kimia</td>
+                                                <td className="px-4 py-3 font-mono text-gray-900">Rp 35.000 - 50.000 / Kg</td>
+                                                <td className="px-4 py-3 text-gray-600">Dilarutkan jadi Molaritas</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-gray-900">Semen Portland</td>
+                                                <td className="px-4 py-3 text-gray-600">Harga Eceran Material</td>
+                                                <td className="px-4 py-3 font-mono text-gray-900">Rp 80.000 - 100.000 / Sak</td>
+                                                <td className="px-4 py-3 text-gray-600">Toko bangunan Timika</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            {/* Tabel 4 */}
+                            <div>
+                                <h3 className="mb-3 text-lg font-semibold text-gray-800">Tabel 4: Parameter Safety Flag (Validasi Uji TCLP-B)</h3>
+                                <div className="overflow-hidden rounded-lg border">
+                                    <table className="w-full text-sm text-left">
+                                        <thead className="bg-gray-50 border-b">
+                                            <tr>
+                                                <th className="px-4 py-3 font-semibold text-gray-700">Parameter Logam</th>
+                                                <th className="px-4 py-3 font-semibold text-gray-700">Kategori Bahaya</th>
+                                                <th className="px-4 py-3 font-semibold text-gray-700">Batas Maksimal (PP 22/2021)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y">
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-gray-900">Arsen (As)</td>
+                                                <td className="px-4 py-3 text-gray-600">Toksik / B3</td>
+                                                <td className="px-4 py-3 font-mono text-gray-900">0,5 mg/L</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-gray-900">Timbal (Pb)</td>
+                                                <td className="px-4 py-3 text-gray-600">Toksik / B3</td>
+                                                <td className="px-4 py-3 font-mono text-gray-900">0,5 mg/L</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-gray-900">Tembaga (Cu)</td>
+                                                <td className="px-4 py-3 text-gray-600">Toksik / B3</td>
+                                                <td className="px-4 py-3 font-mono text-gray-900">10,0 mg/L</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="px-4 py-3 font-medium text-gray-900">Kadmium (Cd)</td>
+                                                <td className="px-4 py-3 text-gray-600">Toksik / B3</td>
+                                                <td className="px-4 py-3 font-mono text-gray-900">0,15 mg/L</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    {/* 9. Daftar Pustaka */}
+                    <section className="rounded-2xl border bg-white p-8 shadow-sm">
+                        <h2 className="mb-6 flex items-center gap-3 text-2xl font-bold text-gray-900">
+                            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-sm text-gray-700">9</span>
+                            Daftar Pustaka (Referensi Ilmiah / KTI)
                         </h2>
                         <div className="space-y-6">
                             <div>
@@ -382,6 +549,26 @@ export default function Documentation() {
                                     <li>
                                         Ahmari, S., &amp; Zhang, L. (2012). Production of eco-friendly bricks from copper mine tailings through geopolymerization. <em>Construction and Building Materials</em>, 29, 323-331.
                                         <br /><span className="text-xs text-gray-400">https://doi.org/10.1016/j.conbuildmat.2011.10.025</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 className="mb-3 text-lg font-semibold text-gray-800">Standar Mutu, Regulasi Lingkungan &amp; Parameter KTI</h3>
+                                <ul className="list-disc space-y-3 pl-5 text-sm text-gray-700">
+                                    <li>
+                                        Badan Standardisasi Nasional. (1989). <em>SNI 03-0349-1989: Bata Beton Pejal untuk Pasangan Dinding</em>. Jakarta: BSN.
+                                    </li>
+                                    <li>
+                                        Badan Standardisasi Nasional. (1996). <em>SNI 03-0691-1996: Bata Beton (Paving Block)</em>. Jakarta: BSN.
+                                    </li>
+                                    <li>
+                                        Badan Pusat Statistik Kabupaten Mimika. (2025). <em>Kabupaten Mimika dalam Angka 2025</em>. Mimika: BPS Kabupaten Mimika.
+                                    </li>
+                                    <li>
+                                        Davidovits, J. (2015). <em>Geopolymer Chemistry and Applications</em> (4th ed.). Saint-Quentin: Institut Géopolymère.
+                                    </li>
+                                    <li>
+                                        Peraturan Pemerintah Republik Indonesia Nomor 22 Tahun 2021 tentang Penyelenggaraan Perlindungan dan Pengelolaan Lingkungan Hidup. Lampiran XI: Baku Mutu Karakteristik Beracun Melalui Prosedur Pelindian Karakteristik Toksisitas (TCLP). Jakarta: Sekretariat Negara.
                                     </li>
                                 </ul>
                             </div>

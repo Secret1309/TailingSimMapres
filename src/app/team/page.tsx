@@ -26,7 +26,7 @@ export default function TeamPage() {
 
                 <div className="mb-12 text-center">
                     <span className="mb-2 block text-sm font-semibold uppercase tracking-widest text-gray-500">Pengembang</span>
-                    <h1 className="text-4xl font-bold text-gray-900">Tim TAILINGSIM</h1>
+                    <h1 className="text-4xl font-bold text-gray-900">TAILINGSIM</h1>
                     <p className="mt-4 text-gray-600">Riset dan pengembangan platform simulasi pengolahan tailing untuk ekonomi sirkular.</p>
                 </div>
 
@@ -64,10 +64,10 @@ export default function TeamPage() {
                 <div className="mt-20 flex flex-col items-center justify-center space-y-4 opacity-50 grayscale transition-all hover:grayscale-0">
                     <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400">Supported By</h3>
                     <div className="flex items-center gap-8">
-                        <div className="relative h-10 w-10">
+                        <div className="relative h-16 w-16 lg:h-20 lg:w-20">
                             <Image src="/assets/Logo_ITB.png" alt="ITB" fill className="object-contain" />
                         </div>
-                        <Image src="/assets/Logo_FTTM.jpg" alt="FTTM ITB" width={60} height={40} className="h-10 w-auto" />
+                        <Image src="/assets/Logo_FTTM_Baru.png" alt="FTTM ITB" width={220} height={65} className="h-12 w-auto lg:h-14" />
                     </div>
                 </div>
 

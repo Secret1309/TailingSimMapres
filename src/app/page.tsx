@@ -1,7 +1,7 @@
 
 import Link from 'next/link';
 import { Header } from "@/components/layout/Header";
-import { ArrowRight, Factory, LineChart, Layers } from "lucide-react";
+import { ArrowRight, Factory, LineChart, Layers, Users } from "lucide-react";
 
 export default function Home() {
   return (
@@ -28,31 +28,44 @@ export default function Home() {
               <strong> produk konstruksi</strong> (geopolimer/batako) berbasis ekonomi sirkular.
             </p>
 
-            <div className="flex flex-col items-center justify-center gap-3 pt-4 sm:flex-row sm:gap-4">
-              <Link
-                href="/simulation"
-                className="group flex w-full items-center justify-center gap-2 rounded-full bg-gray-800 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-gray-700 hover:shadow-gray-300 sm:w-auto"
-              >
-                Mulai Simulasi <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="/about"
-                className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-700 transition-all hover:bg-gray-50 sm:w-auto"
-              >
-                Metodologi
-              </Link>
-              <Link
-                href="/documentation"
-                className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-700 transition-all hover:bg-gray-50 sm:w-auto"
-              >
-                Dokumentasi
-              </Link>
-              <Link
-                href="/team"
-                className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-700 transition-all hover:bg-gray-50 sm:w-auto"
-              >
-                Tim Pengembang
-              </Link>
+            <div className="mx-auto flex w-full max-w-[600px] flex-col items-center justify-center gap-4 pt-6">
+              {/* Baris Atas: 2 Tombol Utama (Lebih Besar/Panjang) */}
+              <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+                <Link
+                  href="/simulation"
+                  className="group flex w-full items-center justify-center gap-2 rounded-full bg-gray-800 py-4 px-2 text-center text-[15px] sm:text-lg font-semibold text-white shadow-lg transition-all hover:bg-gray-700 hover:shadow-gray-300"
+                >
+                  Mulai Simulasi <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  href="/empowerment"
+                  className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-teal-50 py-4 px-2 text-center text-[15px] sm:text-lg font-semibold text-teal-800 transition-all hover:bg-teal-100"
+                >
+                  Kalkulator Komunitas
+                </Link>
+              </div>
+
+              {/* Baris Bawah: 3 Tombol Sekunder (Normal) */}
+              <div className="mt-2 grid w-full grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+                <Link
+                  href="/about"
+                  className="flex w-full items-center justify-center gap-1 rounded-full border border-gray-300 bg-white py-3 px-2 text-center text-sm font-semibold text-gray-700 transition-all hover:bg-gray-50"
+                >
+                  Metodologi
+                </Link>
+                <Link
+                  href="/documentation"
+                  className="flex w-full items-center justify-center gap-1 rounded-full border border-gray-300 bg-white py-3 px-2 text-center text-sm font-semibold text-gray-700 transition-all hover:bg-gray-50"
+                >
+                  Dokumentasi
+                </Link>
+                <Link
+                  href="/team"
+                  className="flex w-full items-center justify-center gap-1 rounded-full border border-gray-300 bg-white py-3 px-2 text-center text-sm font-semibold text-gray-700 transition-all hover:bg-gray-50"
+                >
+                  Pengembang
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -61,13 +74,21 @@ export default function Home() {
       {/* Stats/Features Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-2xl border bg-white p-8 shadow-sm transition-shadow hover:shadow-md">
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-gray-200 text-gray-700">
                 <Layers className="h-6 w-6" />
               </div>
               <h3 className="mb-2 text-xl font-bold">Neraca Massa Metalurgi</h3>
               <p className="text-gray-600">Simulasi neraca massa pengolahan tailing menjadi produk konstruksi geopolimer dengan variabel binder ratio dan tipe tailing.</p>
+            </div>
+
+            <div className="rounded-2xl border bg-white p-8 shadow-sm transition-shadow hover:shadow-md">
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-teal-100 text-teal-800">
+                <Users className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-xl font-bold">Kalkulator BUMDes</h3>
+              <p className="text-gray-600">Terjemahan resep praktis (Kg & Liter) untuk masyarakat Mimika. Ubah tailing jadi paving block standar SNI dengan mudah.</p>
             </div>
 
             <div className="rounded-2xl border bg-white p-8 shadow-sm transition-shadow hover:shadow-md">
@@ -83,7 +104,7 @@ export default function Home() {
                 <LineChart className="h-6 w-6" />
               </div>
               <h3 className="mb-2 text-xl font-bold">Analisis Tekno-Ekonomi</h3>
-              <p className="text-gray-600">Analisis kelayakan ekonomi lengkap: NPV, IRR, Payback Period, CAPEX/OPEX untuk skala industri pertambangan.</p>
+              <p className="text-gray-600">Analisis kelayakan ekonomi lengkap: NPV, IRR, Payback Period, CAPEX/OPEX skala industri pertambangan.</p>
             </div>
           </div>
         </div>

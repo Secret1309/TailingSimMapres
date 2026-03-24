@@ -1,84 +1,50 @@
-# 🏭 Hydrothermal Liquefaction (HTL) Digital Twin
+<div align="center">
+  <img src="public/assets/Logo_ITB.png" alt="Logo ITB" height="60" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="public/assets/Logo_FTTM_Baru.png" alt="Logo FTTM" height="60" />
+</div>
 
-**A High-Fidelity Web Simulation Platform for Bio-Oil Production from Poultry Manure.**  
-*Built for LKTIN AEROSPACE 2026 by Team Think3rs.*
+<h1 align="center">TAILINGSIM</h1>
+<h3 align="center">Platform Simulasi Web untuk Optimalisasi Tekno-Ekonomi Pengolahan Tailing</h3>
 
-![Project Banner](/public/assets/Logo_ITB.png) <!-- Update this if you have a screenshot of the dashboard -->
+<p align="center">
+  <img src="ReadmePicLandPage.png" alt="TAILINGSIM Landing Page" width="800" />
+</p>
 
-## 🚀 Overview
+## Deskripsi Proyek
 
-This Digital Twin platform simulates the **Hydrothermal Liquefaction (HTL)** process, allowing researchers and industry stakeholders to visualize, analyze, and optimize the conversion of poultry waste (chicken & cow manure) into valuable Bio-oil.
+TAILINGSIM adalah sebuah _Decision Support System_ (Sistem Pendukung Keputusan) yang dirancang untuk menghitung neraca massa metalurgi dan kelayakan finansial dari proses _upcycling_ limbah tailing pertambangan menjadi produk konstruksi (geopolimer dan batako) yang bernilai guna. Pengembangan platform ini berlandaskan pada prinsip ekonomi sirkular.
 
-It combines **scientific rigor** with **premium accessibility**, featuring real-time kinetic modeling, 3D visualization, and complete techno-economic analysis.
+Platform ini mengintegrasikan:
+- **Simulasi Parameter Fisik:** Densitas, porositas, dan kuat tekan.
+- **Analisis Neraca Massa & Energi:** Reaksi alkali-aktivasi dan geopolimerisasi.
+- **Kalkulasi Tekno-Ekonomi:** _Net Present Value_ (NPV), _Internal Rate of Return_ (IRR), dan _Payback Period_.
+- **Kalkulator Pemberdayaan BUMDes:** Konversi teoretis simulasi ke dalam satuan lapangan (karung, sak, kg) yang dapat dieksekusi oleh masyarakat lokal, lengkap dengan pemantauan standar keamanan uji _Toxicity Characteristic Leaching Procedure_ (TCLP) sesuai PP No. 22 Tahun 2021.
 
-## ✨ Key Features
+## Tim Pengembang
+Dikembangkan dalam lingkup kompetisi MAPRES ITB 2026.
 
-### 1. 🔬 Advanced Simulation Engine
-- **Component-Contribution Model**: Calculates yields based on exact biochemical composition (Lipids, Proteins, Carbohydrates).
-- **Dynamic Kinetics**: Implements Arrhenius equation to model reaction rates ($k = A e^{-Ea/RT}$) and product distribution (Bio-oil, Gas, Char, Aqueous).
-- **Real-Time Thermodynamics**: Dynamic calculation of Higher Heating Value (HHV) and Energy Recovery Ratio (ERR).
+- **Muhammad Ilham Saripul Milah**
+  Lead Researcher & Full-Stack Developer
+  Teknik Metalurgi, Fakultas Teknik Pertambangan dan Perminyakan (FTTM)
+  Institut Teknologi Bandung (ITB)
 
-### 2. 🧊 3D Process Visualization
-- Interactive **3D Digital Twin** of the reactor facility using React Three Fiber.
-- Visual feedback for temperature changes and processing states.
+## Panduan Pengembang
 
-### 3. 📊 Interactive Dashboard
-- **Product Analysis**: Real-time line charts for kinetic profiles and pie charts for yield distribution.
-- **Economic Suite**: Automatic calculation of NPV (10-year), ROI, IRR, and Payback Period based on CAPEX/OPEX inputs.
-- **Mobile Optimized**: Fully responsive interface for tablets and smartphones.
+### Prasyarat
+- Node.js (V18 atau lebih baru)
+- npm / yarn
 
-### 4. 📉 Data Export
-- Download comprehensive simulation reports in CSV format for offline analysis.
+### Instalasi dan Menjalankan Proyek
+1. Lakukan instalasi dependensi:
+   ```bash
+   npm install
+   ```
+2. Jalankan server pengembangan lokal:
+   ```bash
+   npm run dev
+   ```
+3. Akses antarmuka pada `http://localhost:3000` di peramban mesin uji Anda.
 
-## 🛠️ Tech Stack
-
-- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **State Management**: [Zustand](https://github.com/pmndrs/zustand)
-- **Visualization**: 
-  - [React Three Fiber](https://docs.pmndrs.assets/react-three-fiber) (3D)
-  - [Recharts](https://recharts.org/) (2D Charts)
-- **Icons**: [Lucide React](https://lucide.dev/)
-
-## 🏁 Getting Started
-
-### Prerequisites
-- Node.js 18+ installed.
-
-### Installation
-
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/dzakyzahy/htl-system-digital-twin-think3rs.git
-    cd htl-system-digital-twin-think3rs
-    ```
-
-2.  **Install dependencies**:
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
-
-3.  **Run the development server**:
-    ```bash
-    npm run dev
-    ```
-
-4.  Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## 👥 Team Think3rs
-
-| Name | Role | Institution |
-|------|------|-------------|
-| **Syahid Ma'ashum** | Principal Investigator | UGM (Faculty of Animal Science) |
-| **M. Ilham Saripul Milah** | Process Simulation Engineer | ITB (Metallurgical Engineering) |
-| **Dzaky Zahy Rabbani** | Software & Digital Twin Architect | ITB (Oceanography) |
-
-## 📄 License
-
-This project is licensed under the **MIT License**.
-
----
-*Developed with ❤️ for a sustainable future.*
+## Basis Pengetahuan dan Sitasi
+Algoritma simulasi, parameter densitas curah, batas TCLP, dan data teknis penyusun algoritma TAILINGSIM didasarkan pada riset literatur yang diintegrasikan secara penuh pada modul Kalkulator Komunitas. Rujukan lengkap dapat ditemukan pada halaman Dokumentasi Metodologi di dalam platform.

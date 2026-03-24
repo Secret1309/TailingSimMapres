@@ -23,11 +23,11 @@ export function Header() {
                         />
                     </div>
                     <Image
-                        src="/assets/Logo_FTTM.jpg"
-                        alt="Logo FTTM ITB"
-                        width={50}
-                        height={35}
-                        className="h-[32px] w-auto"
+                        src="/assets/Logo_FTTM_Baru.png"
+                        alt="Logo FTTM ITB Baru"
+                        width={180}
+                        height={55}
+                        className="h-[36px] w-auto lg:h-[40px]"
                     />
                 </div>
 
@@ -41,7 +41,7 @@ export function Header() {
                 </div>
 
                 {/* Right Section - Hamburger Menu */}
-                <div className="relative flex items-center">
+                <div className="relative ml-auto flex items-center lg:ml-0">
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         className="rounded-lg p-2 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-800 focus:outline-none"
@@ -58,6 +58,13 @@ export function Header() {
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 Simulasi
+                            </Link>
+                            <Link
+                                href="/empowerment"
+                                className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Kalkulator BUMDes
                             </Link>
                             <Link
                                 href="/about"
@@ -78,7 +85,7 @@ export function Header() {
                                 className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                Tim Pengembang
+                                Pengembang
                             </Link>
                         </div>
                     )}
