@@ -299,48 +299,46 @@ export function Dashboard() {
                             </div>
 
                             {/* Cumulative Cash Flow */}
-                            {(() => {
-                                const cashFlowData = economicResults.metrics.cumulativeCashFlows.map((val, idx) => ({ year: idx, value: val / 1e9 }));
-                                const dataMax = Math.max(...cashFlowData.map(d => d.value));
-                                const dataMin = Math.min(...cashFlowData.map(d => d.value));
-                                const gradientOffset = dataMax <= 0 ? 0 : dataMin >= 0 ? 1 : dataMax / (dataMax - dataMin);
-
-                                return (
-                                    <div className="rounded-xl border bg-white p-6 shadow-sm">
-                                        <div className="mb-4 flex items-center justify-between">
-                                            <h3 className="font-semibold text-gray-800">Arus Kas Kumulatif (NPV)</h3>
-                                            <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 border border-blue-200">
-                                                BEP: {economicResults.metrics.paybackPeriod < 999 ? economicResults.metrics.paybackPeriod.toFixed(1) + ' Tahun' : '> 10 Tahun'}
-                                            </span>
-                                        </div>
-                                        <div className="h-[300px] w-full">
-                                            <ResponsiveContainer width="100%" height="100%">
-                                                <AreaChart
-                                                    data={cashFlowData}
-                                                    margin={{ top: 20, right: 30, left: 10, bottom: 25 }}
-                                                >
-                                                    <defs>
+                            <div className="rounded-xl border bg-white p-6 shadow-sm">
+                                <div className="mb-4 flex flex-col justify-between sm:flex-row sm:items-center">
+                                    <h3 className="font-semibold text-gray-800">Arus Kas Kumulatif (NPV)</h3>
+                                    <span className="mt-1 inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700 sm:mt-0">
+                                        Payback Period: {economicResults.metrics.paybackPeriod < 999 ? `${economicResults.metrics.paybackPeriod.toFixed(1)} Tahun` : '> 10 Tahun'}
+                                    </span>
+                                </div>
+                                <div className="h-[300px] w-full">
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <AreaChart
+                                            data={economicResults.metrics.cumulativeCashFlows.map((val, idx) => ({ year: idx, value: val / 1e9 }))}
+                                            margin={{ top: 10, right: 30, left: 0, bottom: 25 }}
+                                        >
+                                            <defs>
+                                                {(() => {
+                                                    const cf = economicResults.metrics.cumulativeCashFlows;
+                                                    const min = Math.min(...cf);
+                                                    const max = Math.max(...cf);
+                                                    const offset = max <= 0 ? 0 : min >= 0 ? 1 : max / (max - min);
+                                                    return (
                                                         <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-                                                            <stop offset={gradientOffset} stopColor="#10b981" stopOpacity={1} />
-                                                            <stop offset={gradientOffset} stopColor="#ef4444" stopOpacity={1} />
+                                                            <stop offset="0%" stopColor="#10b981" stopOpacity={0.3} />
+                                                            <stop offset={`${offset * 100}%`} stopColor="#10b981" stopOpacity={0.05} />
+                                                            <stop offset={`${offset * 100}%`} stopColor="#ef4444" stopOpacity={0.05} />
+                                                            <stop offset="100%" stopColor="#ef4444" stopOpacity={0.4} />
                                                         </linearGradient>
-                                                        <linearGradient id="splitFill" x1="0" y1="0" x2="0" y2="1">
-                                                            <stop offset={gradientOffset} stopColor="#10b981" stopOpacity={0.2} />
-                                                            <stop offset={gradientOffset} stopColor="#ef4444" stopOpacity={0.2} />
-                                                        </linearGradient>
-                                                    </defs>
-                                                    <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.5} />
-                                                    <XAxis dataKey="year" label={{ value: 'Tahun', position: 'insideBottom', offset: -10 }} />
-                                                    <YAxis label={{ value: 'Miliar IDR', angle: -90, position: 'insideLeft', offset: -5 }} />
-                                                    <Tooltip formatter={(value: number) => [`Rp ${value.toFixed(2)} M`, 'Kumulatif']} />
-                                                    <ReferenceLine y={0} stroke="#6b7280" strokeDasharray="4 4" label={{ position: 'insideTopLeft', value: 'Break-Even (0)', fill: '#4b5563', fontSize: 12 }} />
-                                                    <Area type="monotone" dataKey="value" stroke="url(#splitColor)" strokeWidth={3} fill="url(#splitFill)" />
-                                                </AreaChart>
-                                            </ResponsiveContainer>
-                                        </div>
-                                    </div>
-                                );
-                            })()}
+                                                    );
+                                                })()}
+                                            </defs>
+                                            <CartesianGrid strokeDasharray="3 3" />
+                                            <XAxis dataKey="year" label={{ value: 'Tahun', position: 'insideBottom', offset: -10 }} />
+                                            <YAxis label={{ value: 'Miliar IDR', angle: -90, position: 'insideLeft' }} />
+                                            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                                            <Tooltip formatter={(value: any) => `Rp ${Number(value).toFixed(1)} M`} />
+                                            <ReferenceLine y={0} stroke="#64748b" strokeDasharray="3 3" strokeWidth={2} />
+                                            <Area type="monotone" dataKey="value" stroke="#374151" strokeWidth={2} fill="url(#splitColor)" />
+                                        </AreaChart>
+                                    </ResponsiveContainer>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Unit Economics */}

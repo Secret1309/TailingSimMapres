@@ -139,8 +139,8 @@ export default function Documentation() {
                                     </tr>
                                     <tr>
                                         <td className="px-4 py-3 text-gray-700">Harga Jual Produk</td>
-                                        <td className="px-4 py-3 font-mono text-gray-900">Rp 850.000/ton</td>
-                                        <td className="px-4 py-3 font-mono text-gray-900">Rp 1.200.000/ton</td>
+                                        <td className="px-4 py-3 font-mono text-gray-900">Rp 450.000/ton</td>
+                                        <td className="px-4 py-3 font-mono text-gray-900">Rp 750.000/ton</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -165,7 +165,7 @@ export default function Documentation() {
                                         <thead className="bg-gray-50">
                                             <tr>
                                                 <th className="px-4 py-3 text-left font-semibold text-gray-700">Komponen</th>
-                                                <th className="px-4 py-3 text-left font-semibold text-gray-700">Referensi (500 ton/hari)</th>
+                                                <th className="px-4 py-3 text-left font-semibold text-gray-700">Referensi (50 ton/hari)</th>
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y">

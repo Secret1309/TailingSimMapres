@@ -50,18 +50,12 @@ export const DEFAULT_TAILING: Record<TailingType, TailingComposition> = {
 
 // Economic Constants (IDR) for Tailing Upcycling Plant
 export const ECONOMIC_DEFAULTS = {
-    // CAPEX Reference: Equipment for small-medium scale brick factory
+    // CAPEX Reference: Equipment for small-medium scale brick factory (~50 ton/day)
     CAPEX_MIXER_REF: 2_500_000_000,           // Rp 2.5 Miliar (Geopolymer Mixer)
     CAPEX_MOLDER_REF: 3_000_000_000,          // Rp 3.0 Miliar (Hydraulic Brick Press/Molder)
     CAPEX_CURING_CHAMBER_REF: 1_500_000_000,  // Rp 1.5 Miliar (Curing Chamber/Oven)
     CAPEX_SILO_CONVEYOR_REF: 1_000_000_000,   // Rp 1.0 Miliar (Silo + Conveyor System)
-    
-    // Infrastruktur & Pendukung (Komponen Esensial yang sebelumnya under-calculated)
-    CAPEX_LAND_BUILDING_REF: 8_500_000_000,   // Rp 8.5 Miliar (Lahan Pabrik & Gudang Penyimpanan Tailing)
-    CAPEX_HEAVY_VEHICLES_REF: 6_000_000_000,  // Rp 6.0 Miliar (Wheel Loader, Dump Truck, Excavator)
-    CAPEX_PERMIT_AMDAL_REF: 2_500_000_000,    // Rp 2.5 Miliar (Perizinan Limbah B3, AMDAL, Konsultan Lingkungan)
-
-    CAPEX_REF_CAPACITY: 500,                   // ton/day (reference capacity)
+    CAPEX_REF_CAPACITY: 50,                   // Dasar kapasitas pabrik menengah (50 ton/hari). Saat simulasi 500 ton/hari, Six-tenths rule akan mem-scale up capex secara saintifik.
 
     // Scaling Factor (Six-Tenths Rule)
     SCALING_FACTOR: 0.6,
@@ -82,12 +76,13 @@ export const ECONOMIC_DEFAULTS = {
     // Binder Cost (Alkali Aktivator / Semen Portland)
     BINDER_COST_PER_KG: 3500,   // Rp 3.500/kg rata-rata (NaOH + Na2SiO3 blend)
 
-    // Product Selling Price
-    PRODUCT_PRICE_STANDARD: 850_000,  // Rp 850.000/ton (Batako Standar)
-    PRODUCT_PRICE_PREMIUM: 1_200_000, // Rp 1.200.000/ton (Paving Block Premium)
+    // Product Selling Price (B2B Wholesale / Harga Pabrik Grosir)
+    // 1 ton batako ~ 111 pcs. Harga pabrik ~Rp 4.000/pcs -> ~Rp 444.000/ton.
+    PRODUCT_PRICE_STANDARD: 450_000,  // Rp 450.000/ton (Batako Standar Grosir)
+    PRODUCT_PRICE_PREMIUM: 750_000,   // Rp 750.000/ton (Paving Block Premium Grosir)
 
-    // Tipping Fee (revenue from accepting waste)
-    TIPPING_FEE_PER_TON: 50_000,  // Rp 50.000/ton (Realisme Bisnis Pengelolaan Limbah)
+    // Tipping Fee (revenue from accepting waste, dikembalikan ke profit industri)
+    TIPPING_FEE_PER_TON: 50_000,  // Rp 50.000/ton kompensasi pengelolaan limbah B3
 
     // Financial Parameters
     DISCOUNT_RATE: 0.10,   // 10% WACC
