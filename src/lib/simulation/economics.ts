@@ -23,11 +23,11 @@ export interface EconomicResult {
     // Cost Breakdown
     capexTotal: number;
     capexBreakdown: {
-        mixer: number;
-        molder: number;
-        curingChamber: number;
-        siloConveyor: number;
+        equipment: number; // Mixer, Molder, Curing, Silo
         installation: number;
+        landAndBuilding: number;
+        heavyVehicles: number;
+        permitting: number;
     };
     annualOpex: number;
     opexBreakdown: {
@@ -66,17 +66,25 @@ export const calculateEconomics = (input: EconomicInput): EconomicResult => {
     const scaleRatio = inputMassTonPerDay / ED.CAPEX_REF_CAPACITY;
     const scaleFactor = Math.pow(scaleRatio, ED.SCALING_FACTOR);
 
+    // 1a. Core Equipment
     const mixerCost = ED.CAPEX_MIXER_REF * scaleFactor;
     const molderCost = ED.CAPEX_MOLDER_REF * scaleFactor;
     const curingChamberCost = ED.CAPEX_CURING_CHAMBER_REF * scaleFactor;
     const siloConveyorCost = ED.CAPEX_SILO_CONVEYOR_REF * scaleFactor;
-
     const equipmentCost = mixerCost + molderCost + curingChamberCost + siloConveyorCost;
 
-    // Lang factors
+    // 1b. Infrastructure & Support (Also scaled by capacity)
+    const landBuildingCost = ED.CAPEX_LAND_BUILDING_REF * scaleFactor;
+    const heavyVehiclesCost = ED.CAPEX_HEAVY_VEHICLES_REF * scaleFactor;
+    // Permitting usually scales less aggressively or is a fixed baseline, but we'll apply standard factor for simplicity
+    const permittingCost = ED.CAPEX_PERMIT_AMDAL_REF * scaleFactor;
+
+    // Lang factors (applied to equipment cost)
     const { INSTALLATION, CIVIL, ENGINEERING, CONTINGENCY } = ED.LANG_FACTORS;
     const installationCost = equipmentCost * (INSTALLATION + CIVIL + ENGINEERING + CONTINGENCY);
-    const capexTotal = equipmentCost + installationCost;
+    
+    // Total CAPEX
+    const capexTotal = equipmentCost + installationCost + landBuildingCost + heavyVehiclesCost + permittingCost;
 
     // --- 2. OPEX Calculation ---
     // Binder cost: daily binder mass (ton) * 1000 (kg) * price/kg * operating days
@@ -166,11 +174,11 @@ export const calculateEconomics = (input: EconomicInput): EconomicResult => {
     return {
         capexTotal,
         capexBreakdown: {
-            mixer: mixerCost,
-            molder: molderCost,
-            curingChamber: curingChamberCost,
-            siloConveyor: siloConveyorCost,
+            equipment: equipmentCost,
             installation: installationCost,
+            landAndBuilding: landBuildingCost,
+            heavyVehicles: heavyVehiclesCost,
+            permitting: permittingCost,
         },
         annualOpex,
         opexBreakdown: {

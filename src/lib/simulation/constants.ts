@@ -55,6 +55,12 @@ export const ECONOMIC_DEFAULTS = {
     CAPEX_MOLDER_REF: 3_000_000_000,          // Rp 3.0 Miliar (Hydraulic Brick Press/Molder)
     CAPEX_CURING_CHAMBER_REF: 1_500_000_000,  // Rp 1.5 Miliar (Curing Chamber/Oven)
     CAPEX_SILO_CONVEYOR_REF: 1_000_000_000,   // Rp 1.0 Miliar (Silo + Conveyor System)
+    
+    // Infrastruktur & Pendukung (Komponen Esensial yang sebelumnya under-calculated)
+    CAPEX_LAND_BUILDING_REF: 8_500_000_000,   // Rp 8.5 Miliar (Lahan Pabrik & Gudang Penyimpanan Tailing)
+    CAPEX_HEAVY_VEHICLES_REF: 6_000_000_000,  // Rp 6.0 Miliar (Wheel Loader, Dump Truck, Excavator)
+    CAPEX_PERMIT_AMDAL_REF: 2_500_000_000,    // Rp 2.5 Miliar (Perizinan Limbah B3, AMDAL, Konsultan Lingkungan)
+
     CAPEX_REF_CAPACITY: 500,                   // ton/day (reference capacity)
 
     // Scaling Factor (Six-Tenths Rule)
@@ -81,7 +87,7 @@ export const ECONOMIC_DEFAULTS = {
     PRODUCT_PRICE_PREMIUM: 1_200_000, // Rp 1.200.000/ton (Paving Block Premium)
 
     // Tipping Fee (revenue from accepting waste)
-    TIPPING_FEE_PER_TON: 0,  // Rp 0/ton (Tailing ModADA disuplai CSR PTFI - Tabel 3)
+    TIPPING_FEE_PER_TON: 50_000,  // Rp 50.000/ton (Realisme Bisnis Pengelolaan Limbah)
 
     // Financial Parameters
     DISCOUNT_RATE: 0.10,   // 10% WACC
